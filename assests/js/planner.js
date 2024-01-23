@@ -29,6 +29,7 @@ for(let i =0 ; i < times.length; i++){
    textAreaDiv.addClass('col-lg-8 col-md-8 flex')
 
    let textArea = $('<textarea>')
+   
 
 
    textArea.addClass('textarea time-block ' )
@@ -75,6 +76,26 @@ $('.time-block').each(function(){
     }
 
 })
+
+
+
+
+function save(){
+    
+$('.time-block').each(function(){
+
+    let num = $(this).attr('data-num')
+
+    let info = $(this).val()
+
+    localStorage.setItem(num,info)
+
+})
+
+}
+
+
+$('.container').on('click', '.saveBtn', save)
 
 
 
