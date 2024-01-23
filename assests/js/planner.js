@@ -80,8 +80,8 @@ $('.time-block').each(function(){
 
 
 
-function save(){
-    
+function save(event){
+    event.preventDefault()
 $('.time-block').each(function(){
 
     let num = $(this).attr('data-num')
@@ -90,9 +90,19 @@ $('.time-block').each(function(){
 
     localStorage.setItem(num,info)
 
+
+
+
 })
 
+
 }
+
+$('.time-block').each(function(){
+    $(this).val(localStorage.getItem($(this).attr('data-num')))
+
+})
+
 
 
 $('.container').on('click', '.saveBtn', save)
