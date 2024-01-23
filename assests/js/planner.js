@@ -2,11 +2,10 @@
 
 
 
-let date = dayjs().format("[Today's date:] DD/MM/YYYY")
+let date = dayjs().format("[Today's date:] DD/MM/YYYY ")
 
-console.log(date)
 
-let times = ['9am', '10am', '11am', '12pm','13pm','14pm', '15pm', '16pm', '17pm']
+let times = ['9', '10', '11', '12','13','14', '15', '16', '17']
 
 $('#currentDay').text(date)
 
@@ -20,8 +19,9 @@ for(let i =0 ; i < times.length; i++){
 
    let divs2 = $('<div>')
 
-   divs2.addClass('col-lg-2 col-md-2  flex')
+   divs2.addClass('col-lg-2 col-md-2  flex hour')
    divs2.text(times[i])
+   
 
 
 
@@ -32,6 +32,7 @@ for(let i =0 ; i < times.length; i++){
 
 
    textArea.addClass('textarea time-block ' )
+   textArea.attr('data-num', times[i])
 
    let buttonDiv = $('<div>')
 
@@ -40,11 +41,10 @@ for(let i =0 ; i < times.length; i++){
    let btn = $('<button>')
 $(btn).text('save')
 
-   btn.addClass('save-Btn')
+   btn.addClass('saveBtn')
 
 
 $('.container').append(divs)
-console.log($('.container'))
 $(divs).append(divs2)
 $(textAreaDiv).append(textArea)
 $(divs).append(textAreaDiv)
@@ -54,3 +54,27 @@ $(buttonDiv).append(btn)
 
 
 }
+
+
+let currenTime = parseInt(dayjs().format('H'))
+console.log(typeof(currenTime))
+
+
+
+$('.time-block').each(function(){
+
+
+    let time = parseInt($(this).attr('data-num'))
+
+    if(time < currenTime){
+        $(this).addClass('past')
+    }else if(time === currenTime){
+        $(this).addClass('present')
+    }else{
+        $(this).addClass('future')
+    }
+
+})
+
+
+
